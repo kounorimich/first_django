@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <meta charset="UTF-8">
+    <title>投稿一覧</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+  <header>
+      <a href=#>Profile<a/>
+      <a href=#>News<a/>
+      <a href=#>Works</a>
+    </ul>
+  </header>
+  <div class="top-wrapper">
+    <h1>kounorimichのブログへようこそ</h1>
+    <h2></h2>
+  </div>
+  <div class="container">
+    <h2>最新の投稿</h2>
+    {% for post in posts.all %}
+      #{{post.id}} :
+      {{ post.title }}        published:  {{ post.published }}
+        <br /><br />
+        <img src="{{post.image.url}}">  
+        {{ post.summary }}
+        <br /><br />
+
+    {% endfor %}
+
+  </div>
+
+</body>
+</html>
