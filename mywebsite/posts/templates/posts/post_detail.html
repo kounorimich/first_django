@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja-jp">
 <head>
     <meta charset="UTF-8">
-    <title>投稿ID: {{post_id}}</title>
+    <title>タイトル: {{post.title}}</title>
 </head>
 <body>
-    {{post_id}}
+    <h1>タイトル: {{post.title}}</h1>
+    <p>投稿日: {{post.published}}</p>
+    <br /><br />
+    <img src="{{post.image.url}}" class= "img-fluid rounded" style = 'max-height: 300px;'>
+    <p>本文: {{post.body}}</p>
+
+
+
+
 </body>
 </html>
