@@ -21,10 +21,12 @@ from posts import views
 
 
 urlpatterns = [
-    #url(r'^posts/', include('posts.urls')),
-    url(r'^posts/$', views.index, name='index'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^posts/', include('posts.urls')),
+    # url(r'^posts/$', views.index, name='index'),# この書き方だと、新しいアプリができた時にimport viewsがかぶってしまう。だからよくない。
+    url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^posts/(?P<post_id>[0-9]+)/$', views.post_detail, name='post_detail'),
     url(r'^posts/about/$', views.about, name='about')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+               static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #staticなファイルについては、setting.pyのMEDIA_URLと、MEDIA_ROOTを見てねー

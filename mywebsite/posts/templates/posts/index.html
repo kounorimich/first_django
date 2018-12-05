@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
+{% load static %}
 <head>
-    <title>投稿一覧</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>kounorimich</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{% static 'posts/css/stylesheet.css' %}">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">kounorimich</a>
@@ -19,7 +21,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -38,12 +40,15 @@
     <h2></h2>
   </div>
   <div class="container">
-    {% load static %}
-    <img src="{% static 'posts/Profile.jpg' %}" alt="" class= "img-fluid" style = 'max-height: 100px;'>
-    {% for post in posts.all %} <!--#allつけなくても行けます-->
+      <div class="text-center">
+          <h3>kounorimichのブログ</h3>
+          <img src="{% static 'posts/Profile.jpg' %}" alt="" class= "img-fluid text-center" style = 'max-height: 200px;'>
+    </div>
+
     <br /><br />
     <h3>最新の投稿</h3>
     <hr>
+    {% for post in posts.all %} <!--#allつけなくても行けます-->
       #{{post.id}} :
       <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>        published:  {{ post.published }}
         <br /><br />
