@@ -18,14 +18,16 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from posts import views
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
     url(r'^posts/', include('posts.urls')),
     # url(r'^posts/$', views.index, name='index'),# この書き方だと、新しいアプリができた時にimport viewsがかぶってしまう。だからよくない。
-    url(r'^admin/', admin.site.urls, name='admin'),
+    url(r'^admin/', admin.site.urls),
     url(r'^posts/(?P<post_id>[0-9]+)/$', views.post_detail, name='post_detail'),
-    url(r'^posts/about/$', views.about, name='about')
+    url(r'^posts/about/$', views.about, name='about'),
+    # url(r'', RedirectView.as_view(url='/posts/'), name='redirect_to_index')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
                static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
